@@ -1,0 +1,46 @@
+time complexity - how much time tiken during the time of the code execution with respect to the input size.
+
+Big O - represents the upper bound of running time, it gives the worst caase scenerio for an algorithm. 
+it describes the maximum time an algorithm can take.
+
+1. 0(1) - Constatnt time - the time taken doesn,t depend on the input size , the algorithm always
+  runs in the same time.
+
+  
+  for(int i = 0; i < 10; i++){
+     cout << "Hello";
+  }
+
+2. O(log n) -> Logarithmic time -> time grows loggarithmically as the input size increases , often seen 
+      in algos that divide the input in half, like binary search
+
+
+3. O(n) - Linear time - the time grows directly propotional to input size 
+
+    for(int i = 0; i < n; i++){
+     cout << "Hello";
+  }
+
+4. n(n log n) -> Linearithmic time -> a mix of linear and logarathmic,quick and merge sort.
+
+5. O(n^2) -> Quadratic time -> 8
+
+
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int i = m - 1; j = n - 1; k = m+n - 1;
+        while(j >= 0){
+            if(i>= 0 && nums[i] > nums[j]){
+                nums1[k] =nums[i];
+                k--;
+                i--;
+            } else {
+                nums1[k] =nums2[j];
+                k--;
+                j--;
+            }
+        }
+    }
+};
