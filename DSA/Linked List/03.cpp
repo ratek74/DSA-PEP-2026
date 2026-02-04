@@ -55,17 +55,18 @@ void deleteAtEnd(Node* head){
     if(head ==NULL){
         return;
     }
-    if(head->next = NULL){
+    if(head->next = head){
         delete head;
         head = NULL;
         return;
     }
         Node* temp = head;
-        while(temp->next->next != NULL){
+        while(temp->next->next != head){
             temp = temp->next;
         }
-        delete temp->next;
-        temp->next = NULL;
+        Node* todel = temp->next;
+        temp->next = head;
+        delete todel;
 }
 void deleteAtBeg(Node* head ){
     if(head == NULL) return;

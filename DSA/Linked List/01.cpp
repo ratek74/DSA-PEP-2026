@@ -63,6 +63,23 @@ void insertAtPosition(Node* &head, int pos, int val){
     node-> next = temp->next;
     temp->next = node;
 }
+ // delete at the nth position
+ void deleteAtPosition(Node* &head, int pos){
+    if(head == NULL) return;
+    if(pos == 1){
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+    Node* temp = head;
+    for(int i = 1; i < pos - 1; temp != NULL, i++){
+      temp = temp->next;
+    }
+    Node* toDel = temp->next;
+    temp->next = temp->next->next;
+    delete toDel;
+}
 
 int main() {
     Node* head = NULL;
