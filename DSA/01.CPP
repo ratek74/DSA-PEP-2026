@@ -42,3 +42,52 @@ public:
         return sum;
     }
 };
+ListNode* reverseRange(ListNode* head, int l, int r) {
+    if(l >= r) return head;
+
+    ListNode dummy(0);
+    dummy.next = head;
+    ListNode* prev = &dummy;
+
+    for(int i=1;i<l;i++)
+        prev = prev->next;
+
+    ListNode* curr = prev->next;
+
+    for(int i=0;i<r-l;i++) {
+        ListNode* nxt = curr->next;
+        curr->next = nxt->next;
+        nxt->next = prev->next;
+        prev->next = nxt;
+    }
+    return dummy.next;
+}
+
+ListNode* swapAndReverse(ListNode* head, int k) {
+    if(!head || !head->next) return head;
+
+    // length
+    int n=0;
+    ListNode* t=head;
+    while(t){ n++; t=t->next; }
+
+    int left = k;
+    int right = n-k+1;
+
+    // ensure left < right
+    if(left > right) swap(left,right);
+
+    // find nodes
+    ListNode *L=head,*R=head;
+    for(int i=1;i<left;i++) L=L->next;
+    for(int i=1;i<right;i++) R=R->next;
+
+    // swap values
+    swap(L->val,R->val);
+
+    // reverse only if there exists a segment
+    if(right-left > 1)
+        head = reverseRange(head,left+1,right-1);
+
+    return head;
+}
